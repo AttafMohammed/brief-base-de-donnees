@@ -1,0 +1,140 @@
+Mohammed ATTAF  GROUPE 2.
+Brief  
+Bases de donnees 
+
+
+
+Création de la base de donnees BDvol :
+CREATE DATABASE bdvols;
+Création des tables et leurs attributs :
+CREATE TABLE avion(
+NumeroA int primary key,
+Compagnie varchar (20),
+Constructeur varchar (20),
+Modèle varchar(20),
+Capacité int
+);
+
+CREATE TABLE horaire(
+NumeroH int primary key,
+VilleDépart varchar (20),
+VilleArrivée varchar (20),
+HeureDépart int,
+HeureArrivée int
+);
+
+CREATE TABLE vol (
+NumeroV int primary key ,
+JourSem varchar (20),
+Jour DATE,
+PlacesLibres int,
+NumeroA int,
+NumeroH int,
+CONSTRAINT FK_volNumeroA FOREIGN KEY (NumeroA) REFERENCES avion(NumeroA),
+CONSTRAINT FK_volNumeroH FOREIGN KEY (NumeroH) REFERENCES horaire(NumeroH)
+);
+
+
+
+
+
+
+
+
+Création d’une table de passagers avec leurs attributs 
+
+CREATE TABLE passagers (
+ NumeroP int PRIMARY key,
+ NomP varchar (20),
+ PrenomP varchar (20) );
+
+Insertion des noms:
+
+insert into passagers (
+ NumeroP, NomP, PrenomP)
+ Values
+(1, 'Thirion', 'Eric'),
+ (2, 'Gaston', 'Lagaffe'),
+ (3, 'Clapton', 'Eric') ;
+
+Correction des erreurs  avec les requêtes DELETE et INSERT :
+
+DELETE from passagers 
+Where
+ NumeroP=2;
+
+insert into passagers (
+NumeroP, NomP, PrenomP)
+ VALUES
+(2, 'Lagaffe', 'Gaston');
+
+Modification des noms et prénom avec la requête UPDATE :
+
+UPDATE passagers
+set PrenomP='Alex'
+where NomP='Thirion';
+ UPDATE passagers
+set NomP=' Deferre '
+where PrenomP='Gaston';
+ UPDATE passagers
+set PrenomP='  Alex '
+where NomP=' Clapton';
+
+Exécution de requêtes:
+
+Selection de colonnes:
+
+Afficher une table contenant les colonnes CustomerName, Adresset City de la table Customers.
+
+ SELECT CustomerName, Address, City FROM Customers;
+
+Selection de lignes:
+
+Afficher une table contenant les lignes de la table Customers dont le City est London.
+
+ SELECT * FROM Customers where city='London';
+
+Selection multicritère:
+
+Afficher les lignes de la table Customers dont Country est UK, City est London et CustomerID est superieur de 19.
+
+ SELECT * FROM Customers where Country='UK'AND City='London' AND CustomerID>19;
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exercise de jointure :
+
+Sur le site W3school afficher la jointure des trois tableau de Produits, categories Suppliers :
+
+SELECT  Products.ProductName, Products.Price, Categories.CategoryName, Suppliers.SupplierName
+FROM 
+Products INNER JOIN Categories on products.CategoryID = categories.CategoryID
+INNER JOIN Suppliers on products.SupplierID=suppliers.SupplierID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
